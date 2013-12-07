@@ -9,3 +9,5 @@ server/indexes
 server/node_modules
 server/.idea
 .DS_Store
+server/Hangouts.json
+server/chat.json
