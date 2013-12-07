@@ -1,5 +1,4 @@
 ## Hangouts Manager ##
-----------
 Hangouts Manager is Hangouts offline Archive browser in offline environment. You can download your archive from https://www.google.com/settings/takeout and import into Hangouts Manager.
 
 ### HOW TO BUILD ###
@@ -18,8 +17,8 @@ Hangouts Manager is Hangouts offline Archive browser in offline environment. You
  3. Enter `npm start` to start the server
  4. Open your browser, visit http://localhost:8000 , then you will see the **Setting** page.
  5. Go to https://www.google.com/settings/takeout and download your archive. This may take a few minutes. After you have get the archive. put this into your HangoutsManger/server directory, input "./Hangouts.json"(or archive file name). click **Build** button. after all complete. refresh your page. click Home link on the navigator.
- 6. You can browse the hangouts archive now!.
-
+ 6. You can browse the hangouts archive now!. 
+ 
 Note: Search function is not available.
 
 ----------
