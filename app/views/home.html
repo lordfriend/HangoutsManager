@@ -1,0 +1,38 @@
+<div class="span4">
+    <ul class="hangouts-nav">
+        <li ng-repeat="conversation in conversations" ng-class="{active: conversation.id==currentConversation.id}">
+            <a class="conversation-panel" ng-click="onClickConversation(conversation)">
+                <div class="hangouts-avatar" data-avatar="conversation.avatar"></div>
+                <div class="conversation-name">{{conversation.name}}</div>
+                <div class="meta-info"><small>Total: {{conversation.eventCount}}</small></div>
+                <div class="clearfix"></div>
+            </a>
+        </li>
+    </ul>
+</div>
+<div class="span2">
+    <ul class="nav nav-list archive-list">
+    <li ng-repeat="archive in archives" ng-class="{active: archive.month==currentArchive.month}">
+        <a ng-click="onClickArchive(archive)" class="archive-entry"><i ng-class="{'icon-plus-sign': expanded!=archive.month, 'icon-minus-sign': expanded==archive.month}"></i> <span>{{archive.month}}</span></a>
+        <ul class="nav nav-list daily-list" ng-show="expanded==archive.month">
+            <li ng-repeat="daily in dailyArchive" ng-class="{active: daily.day==currentDay.day}">
+                <a ng-click="onClickDaily(daily, archive)">{{daily.day}}</a>
+            </li>
+        </ul>
+        <div class="clearfix"></div>
+    </li>
+    </ul>
+</div>
+<div class="span6">
+    <!--<p>{{owner}}</p>-->
+    <form class="form-search pull-right">
+        <input class="input-medium search-query" type="text"/>
+        <button class="btn" type="button">Search</button>
+    </form>
+    <div class="clearfix"></div>
+    <ul class="chat-frame">
+        <li ng-repeat="event in events" ng-class="{'send-by-owner': event.sender_id.gaia_id==owner}" chat-event="event">
+        </li>
+    </ul>
+    <pagination total-items="currentConversation.eventCount" items-per-page="itemsPerPage" max-size="6" page="currentPage" num-pages="currentPage"></pagination>
+</div>

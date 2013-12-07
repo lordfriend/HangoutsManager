@@ -1,0 +1,26 @@
+{
+  "name": "HangoutsManagersEngine",
+  "version": "0.0.1",
+  "description": "parse hangouts.json, build index and be as a server",
+  "main": "index-builder.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "repository": "",
+  "author": "lordfriend",
+  "license": "GPLv2",
+  "devDependencies": {
+    "nodemon": "*"
+  },
+  "dependencies": {
+    "express": "3.x",
+    "JSONStream": ">=0.6.4",
+    "setimmediate": ">=1.0.1",
+    "underscore": ">=1.5.2",
+    "cheerio": "~0.12.2",
+    "request": "~2.27.0",
+    "node-uuid": "~1.4.1",
+    "moment": "~2.4.0"
+  }
+}

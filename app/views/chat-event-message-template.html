@@ -1,0 +1,22 @@
+<div class="chat-event">
+    <a class="sender-avatar" href="{{getParticipantUrl(event.sender_id.gaia_id)}}" ng-hide="event.sender_id.gaia_id==owner">
+        <img ng-src="{{getParticipantAvatar(event.sender_id.gaia_id)}}">
+    </a>
+    <div class="chat-bubble">
+        <div class="chat-message" data-chat-message="event.chat_message"></div>
+        <div class="chat-meta"  popover="{{getJson(event)}}" popover-placement="bottom"><span ng-hide="event.sender_id.gaia_id==owner">{{getParticipantName(event.sender_id.gaia_id)}} • </span><span>{{getMessageTime(event.timestamp)}}</span></div>
+    </div>
+    <a class="sender-avatar" href="{{getParticipantUrl(event.sender_id.gaia_id)}}" ng-show="event.sender_id.gaia_id==owner">
+        <img ng-src="{{getParticipantAvatar(event.sender_id.gaia_id)}}">
+    </a>
+    <div class="clearfix"></div>
+</div>
+<div class="membership-change">
+    <span tooltip="{{getMessageTime(event.timestamp)}}" tooltip-placement="right">{{getParticipantName(event.sender_id.gaia_id)}}</span>
+</div>
+<div class="hangout-event">
+    <span tooltip="{{getMessageTime(event.timestamp)}}" tooltip-placement="right">{{getParticipantName(event.sender_id.gaia_id)}}</span>
+</div>
+<div class="conversation-rename">
+    <span tooltip="{{getMessageTime(event.timestamp)}}" tooltip-placement="right">{{getParticipantName(event.sender_id.gaia_id)}}</span><span> renames this conversation to </span><span>"{{event.conversation_rename.new_name}}"</span>
+</div>

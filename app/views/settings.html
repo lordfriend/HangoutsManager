@@ -1,0 +1,59 @@
+<h2>Settings</h2>
+<div class="well">
+    <form class="form-inline" ng-submit="setProxy()">
+        <fieldset>
+            <legend>Proxy Setting</legend>
+
+            <label class="checkbox checkbox-switch" for="proxy-switch">
+                <input id="proxy-switch" type="checkbox" ng-model="useProxy"/> Use http Proxy
+            </label>
+
+            <div class="input-prepend"><span class="add-on">http://</span>
+                <input id="proxy-address" type="text" class="input-large" placeholder="Your proxy address" ng-model="proxyAddr" ng-disabled="!useProxy">
+            </div>
+            <button type="submit" class="btn btn-primary" ng-hide="oldProxyAddr==proxyAddr">Save</button>
+            <p class="muted"><small>Use proxy for Hangouts Manager server to pull data from Google</small></p>
+        </fieldset>
+    </form>
+    <form class="form-horizontal">
+        <fieldset>
+            <legend>Data and Index</legend>
+            <tabset>
+                <tab heading="Find local file">
+                    <div class="control-group" ng-hide="isProcessingData">
+                        <label class="control-label" for="server-file-path">File Path</label>
+                        <div class="controls">
+                            <input id="server-file-path" class="input-xlarge" type="text" placeholder="please input the path of data file on server" ng-model="serverFilePath"/>
+                            <button id="build-button" class="btn btn-primary" type="button" ng-click="buildIndex()">Build</button>
+                        </div>
+                    </div>
+                    <div class="control-group" ng-show="isProcessingData">
+                        <label class="control-label">Current progress:</label>
+                        <div class="controls">
+                            <div>{{progressMessage.event}}</div>
+                            <div>{{progressMessage.data}}</div>
+                        </div>
+                    </div>
+                </tab>
+                <tab heading="Upload a file">
+                    <div class="control-group">
+                        <div class="controls">
+                            <div class="drop-zone">
+                                <a id="dropzone">
+                                    <span>DRAG AND DROP FILE HERE</span>
+                                    <span>or</span>
+                                    <span>SELECT A FILE</span>
+                                </a>
+                            </div>
+                            <input id="upload-input" type="file" style="display: none;"/>
+                        </div>
+                    </div>
+                </tab>
+            </tabset>
+
+            <p class="muted"><small>Hangouts Manger use archive file which can be taken out from Google Account setting to
+                build index. All function rely the index files. Make sure you have already provide an archive file and
+                built the indexes</small></p>
+        </fieldset>
+    </form>
+</div>

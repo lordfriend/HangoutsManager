@@ -1,0 +1,77 @@
+<!doctype html>
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+        <!-- bower:css -->
+        <!-- endbower -->
+
+        <link rel="stylesheet" href="bower_components/bootstrap-css/css/bootstrap.css"/>
+        <!-- build:css(.tmp) styles/main.css -->
+        <link rel="stylesheet" href="styles/main.css">
+        <link rel="stylesheet" href="styles/hangouts-avatar.css"/>
+        <!-- endbuild -->
+    </head>
+    <body ng-app="HangoutsManagerApp">
+
+        <!-- Add your site or application content here -->
+        <div class="container" ng-controller="NavCtrl">
+            <div class="header">
+                <ul class="nav nav-pills pull-right">
+                    <li ng-class="{active:$location.path()=='/home'}"><a href="#/home">Home</a></li>
+                    <li ng-class="{active:$location.path()=='/settings'}"><a href="#/settings">Setting</a></li>
+                    <li ng-class="{active:$location.path()=='/about'}"><a href="#/about">About</a></li>
+                </ul>
+                <h3 class="muted">Hangouts Manager</h3>
+            </div>
+            <hr>
+            <div ng-view="" class="row-fluid main-area"></div>
+        </div>
+
+        <script src="bower_components/jquery/jquery.js"></script>
+        <script src="bower_components/moment/moment.js"></script>
+        <script src="bower_components/angular/angular.js"></script>
+        <script src="bower_components/bootstrap-css/js/bootstrap.js"></script>
+        <!-- build:js scripts/modules.js -->
+        <script src="bower_components/angular-resource/angular-resource.js"></script>
+        <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+        <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+        <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+        <!-- endbuild -->
+
+        <!-- bower:js -->
+        <!-- endbower -->
+
+        <script src="bower_components/jquery-filedrop/jquery.filedrop.js"></script>
+
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="scripts/app.js"></script>
+        <script src="scripts/services/conversation.js"></script>
+        <script src="scripts/services/GPlusFetcher.js"></script>
+        <script src="scripts/services/Initialize.js"></script>
+        <script src="scripts/controllers/nav.js"></script>
+        <script src="scripts/controllers/home.js"></script>
+        <script src="scripts/controllers/settings.js"></script>
+        <script src="scripts/controllers/about.js"></script>
+        <script src="scripts/controllers/splash.js"></script>
+        <script src="scripts/directives/HangoutsAvatar.js"></script>
+        <script src="scripts/directives/ChatMessage.js"></script>
+        <script src="scripts/directives/ngDebug.js"></script>
+        <script src="scripts/directives/chatEvent.js"></script>
+        <script src="scripts/services/EventAnalyzer.js"></script>
+        <!-- endbuild -->
+
+    </body>
+</html>

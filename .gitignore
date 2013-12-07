@@ -1,0 +1,11 @@
+node_modules
+dist
+.tmp
+.sass-cache
+app/bower_components
+.idea
+server/public
+server/indexes
+server/node_modules
+server/.idea
+.DS_Store

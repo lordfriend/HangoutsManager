@@ -1,0 +1,62 @@
+.hangouts-avatar {
+    float: left;
+    margin: 10px;
+    width: 46px;
+    height: 46px;
+    position: relative;
+}
+
+.middle-avatar, .small-avatar {
+    overflow: hidden;
+    position: absolute;
+}
+
+.big-avatar > img {
+    width: 46px;
+    height: 46px;
+}
+
+.middle-avatar {
+    width: 22px;
+    height: 46px;
+    top: 0;
+    left: 0;
+}
+
+.middle-avatar > img {
+    width: 46px;
+    height: 46px;
+    position: absolute;
+    left: -11px;
+    top: 0;
+}
+
+.small-avatar {
+    width: 22px;
+    height: 22px;
+}
+
+.small-avatar.tl {
+    left: 0;
+    top: 0;
+}
+
+.small-avatar.bl {
+    left: 0;
+    top: 24px;
+}
+
+.small-avatar.tr {
+    left: 24px;
+    top: 0;
+}
+
+.small-avatar.br {
+    left: 24px;
+    top: 24px;
+}
+
+.small-avatar > img {
+    width: 21px;
+    height: 21px;
+}
