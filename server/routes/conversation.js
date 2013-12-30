@@ -8,34 +8,36 @@ var fs = require('fs'),
   moment = require('moment');
 
 var archive = function (eventIds) {
+  var timezoneOffset = global.config.timezone;
+  console.log('time zone: ' + timezoneOffset);
   var archives = [];
   var start = moment().valueOf();
   console.log('data length:' + eventIds.length);
   if(eventIds.length == 1) {
     archives.push({
-      month: moment(eventIds[0].timestamp/1000).format('YYYY/M'),
+      month: moment(eventIds[0].timestamp/1000).zone(timezoneOffset).format('YYYY/M'),
       event_count: 1,
       event_range: [eventIds[0], eventIds[0]]
     });
   } else if(eventIds.length < 10 && eventIds.length > 1) {
     // we'll display only start and end month
     archives.push({
-      month: moment(eventIds[0].timestamp/1000).format('YYYY/M') + ' - ' + moment(eventIds[eventIds.length - 1].timestamp/1000).format('YYYY/M'),
+      month: moment(eventIds[0].timestamp/1000).zone(timezoneOffset).format('YYYY/M') + ' - ' + moment(eventIds[eventIds.length - 1].zone(timezoneOffset).timestamp/1000).format('YYYY/M'),
       event_count: eventIds.length,
       event_range: [eventIds[0], eventIds[eventIds.length - 1]]
     });
   } else {
-    var monthly = [[moment(eventIds[0].timestamp/1000).startOf('month'), moment(eventIds[0].timestamp/1000).endOf('month')]];
+    var monthly = [[moment(eventIds[0].timestamp/1000).zone(timezoneOffset).startOf('month'), moment(eventIds[0].timestamp/1000).zone(timezoneOffset).endOf('month')]];
     var monthIncrement = 0;
-    archives.push({month: moment(eventIds[0].timestamp/1000).format('YYYY/M')});
+    archives.push({month: moment(eventIds[0].timestamp/1000).zone(timezoneOffset).format('YYYY/M')});
 
     while(monthly[monthIncrement][1].valueOf() < eventIds[eventIds.length -1].timestamp/1000) {
       monthly.push([monthly[monthIncrement][0], monthly[monthIncrement][1]]);
       monthly[monthIncrement] = [monthly[monthIncrement][0].valueOf(), monthly[monthIncrement][1].valueOf()];
       monthIncrement++;
       var nextMonthOffset = monthly[monthIncrement][0].add('month', 1).valueOf();
-      monthly[monthIncrement][0] = moment(nextMonthOffset).startOf('month');
-      monthly[monthIncrement][1] = moment(nextMonthOffset).endOf('month');
+      monthly[monthIncrement][0] = moment(nextMonthOffset).zone(timezoneOffset).startOf('month');
+      monthly[monthIncrement][1] = moment(nextMonthOffset).zone(timezoneOffset).endOf('month');
       archives.push({month: monthly[monthIncrement][0].format('YYYY/M'), event_count: 0});
     }
     monthly[monthIncrement] = [monthly[monthIncrement][0].valueOf(), monthly[monthIncrement][1].valueOf()];

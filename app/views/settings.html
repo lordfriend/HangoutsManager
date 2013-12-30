@@ -1,18 +1,18 @@
 <h2>Settings</h2>
 <div class="well">
-    <form class="form-inline" ng-submit="setProxy()">
+    <form class="form-horizontal">
         <fieldset>
-            <legend>Proxy Setting</legend>
-
-            <label class="checkbox checkbox-switch" for="proxy-switch">
-                <input id="proxy-switch" type="checkbox" ng-model="useProxy"/> Use http Proxy
-            </label>
-
-            <div class="input-prepend"><span class="add-on">http://</span>
-                <input id="proxy-address" type="text" class="input-large" placeholder="Your proxy address" ng-model="proxyAddr" ng-disabled="!useProxy">
+            <legend>Time Zone Setting</legend>
+            <div class="control-group">
+                <label class="control-label">Time Zone: </label>
+                <div class="controls">
+                    UTC
+                    <select class="dyn-selectpicker show-menu-arrow" ng-model="timezone">
+                        <option ng-repeat="offset in timezoneMap" value="{{offset}}">{{offset}}</option>
+                    </select>
+                </div>
             </div>
-            <button type="submit" class="btn btn-primary" ng-hide="oldProxyAddr==proxyAddr">Save</button>
-            <p class="muted"><small>Use proxy for Hangouts Manager server to pull data from Google</small></p>
+            <p class="muted"><small>You don't need to set time zone manually unless system time zone is not correct</small></p>
         </fieldset>
     </form>
     <form class="form-horizontal">

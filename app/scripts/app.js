@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('HangoutsManagerApp', ['ngResource', 'ui.bootstrap'])
+angular.module('HangoutsManagerApp', ['ngResource', 'ui.bootstrap', 'dynBootstrapSelect'])
   .config(function ($routeProvider, $httpProvider) {
     $routeProvider
       .when('/', {

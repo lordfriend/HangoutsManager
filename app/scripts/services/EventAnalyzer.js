@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('HangoutsManagerApp')
-  .service('Eventanalyzer', function Eventanalyzer() {
+  .service('Eventanalyzer', function Eventanalyzer(Initialize) {
     // AngularJS will instantiate a singleton by calling "new" on this function
     var ONE_MONTH_ARCHIVE = 0;
     var MULTI_MONTH_ARCHIVE = 1;
@@ -18,15 +18,15 @@ angular.module('HangoutsManagerApp')
       var dailyArchive = [];
       if(self.eventIds.length == 1) {
         dailyArchive.push({
-          day: moment(self.eventIds[0].timestamp/1000).format('Do, MMM'),
-          dayOfWeek: moment(self.eventIds[0].timestamp/1000).format('d'),
+          day: moment(self.eventIds[0].timestamp/1000).zone(Initialize.timezone).format('Do, MMM'),
+          dayOfWeek: moment(self.eventIds[0].timestamp/1000).zone(Initialize.timezone).format('d'),
           event_range: [self.eventIds[0], self.eventIds[1]]
         });
         return dailyArchive;
       }
       var lastDayEndPoint = 0;
       var archiveType = ONE_MONTH_ARCHIVE;
-      if(!moment(archive.event_range[0].timestamp/1000).isSame(moment(archive.event_range[1].timestamp/1000),'month')){
+      if(!moment(archive.event_range[0].timestamp/1000).zone(Initialize.timezone).isSame(moment(archive.event_range[1].timestamp/1000).zone(Initialize.timezone),'month')){
         archiveType = MULTI_MONTH_ARCHIVE;
       }
       for(var i = 0; i < self.eventIds.length; i++) {
@@ -37,7 +37,7 @@ angular.module('HangoutsManagerApp')
             // this event is fall into the same range of the last day.
             dailyArchive[dailyArchive.length - 1].event_range[1] = self.eventIds[i];
           } else {
-            var event_moment = moment(self.eventIds[i].timestamp/1000);
+            var event_moment = moment(self.eventIds[i].timestamp/1000).zone(Initialize.timezone);
             var dayDisplay, dayOfWeekDisplay;
             if(archiveType == ONE_MONTH_ARCHIVE) {
               dayDisplay = event_moment.format('Do');

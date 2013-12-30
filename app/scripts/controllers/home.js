@@ -155,7 +155,7 @@ angular.module('HangoutsManagerApp')
 
     $scope.getMessageTime = function(timestamp) {
       timestamp = parseInt(timestamp, 10);
-      return moment(timestamp/1000).format('YYYY-M-D H:m:s');
+      return moment(timestamp/1000).zone(Initialize.timezone).format('YYYY-M-D H:m:s');
     };
 
     $scope.getParticipantName = function(id, displayName) {

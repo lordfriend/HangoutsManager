@@ -46,6 +46,8 @@ app.get('/api/setting/index-progress', setting.getBuildProgressAPI);
 app.get('/api/setting/proxy', setting.getProxyAPI);
 app.post('/api/setting/proxy', setting.setProxyAPI);
 app.post('/api/setting/enableProxy', setting.enableProxyAPI);
+app.get('/api/setting/timezone', setting.getTimezone);
+app.post('/api/setting/timezone', setting.setTimezone);
 
 app.get('/api/participant', participant.participantAPI);
 app.get('/api/google', participant.googleAPI);

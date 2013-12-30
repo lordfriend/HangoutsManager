@@ -6,7 +6,7 @@ Hangouts Manager is Hangouts offline Archive browser in offline environment. You
 **This project is under development and may change at any time**
 
  1. Clone this project.
- 2. Download dependencis:<br/>
+ 2. Download dependencies:<br/>
  `$ cd HangoutsManager`<br/>
  `$ npm install`<br/>
   Build front end:<br/>
@@ -22,7 +22,7 @@ Hangouts Manager is Hangouts offline Archive browser in offline environment. You
 Note: Search function is not available.
 
 ----------
-This project is build with [yeoman][1], The server side is developed using [expressjs][2]
+This project is built with [yeoman][1], The server side is developed using [expressjs][2]
 You can develop front end by using grunt task runner, bower.
 
   [1]: http://yeoman.io

@@ -116,3 +116,27 @@ exports.enableProxyAPI = function(req, res) {
     }
   });
 };
+
+exports.getTimezone = function(req, res) {
+  var timezoneOffset = global.config.timezone;
+  var timezoneMap = global.config.TIME_ZONE_MAP;
+  res.json(200, {
+    timezone: timezoneOffset,
+    timezone_map: timezoneMap
+  });
+};
+
+exports.setTimezone = function(req, res) {
+  global.config.timezone = req.body.timezone;
+  configManager.updateConfigFile(function(err) {
+    if(err) {
+      res.json(500, {
+        msg: err
+      });
+    } else {
+      res.json(200, {
+        msg: 'ok'
+      });
+    }
+  });
+};

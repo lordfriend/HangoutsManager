@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('HangoutsManagerApp')
-  .service('Initialize', function Initialize($resource, $location, GPlusFetcher) {
+  .service('Initialize', function Initialize($resource, $location) {
     var self = this;
     var Index = $resource('/api/index');
     self.index = Index.query({}, function(){
@@ -30,6 +30,26 @@ angular.module('HangoutsManagerApp')
 //      console.log(self.google);
     }, function(error){
       console.error(error);
+    });
+
+    var getTimezone = $resource('/api/setting/timezone', {}, {
+      query: {method: 'GET', isArray: false}
+    });
+    getTimezone.query({}, function(data) {
+      if(!data.timezone) {
+        var systemTimezone = moment().zone() / 60;
+        var symbol = systemTimezone >= 0 ? '+': '-';
+        if(Math.abs(systemTimezone) < 10) {
+          systemTimezone = symbol + '0' + Math.abs(systemTimezone) + ':00';
+        } else {
+          systemTimezone = symbol + Math.abs(systemTimezone) + ':00';
+        }
+        self.timezone = systemTimezone;
+      } else {
+        self.timezone = data.timezone;
+      }
+
+      self.timezoneMap = data.timezone_map;
     });
 
   });

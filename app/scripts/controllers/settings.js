@@ -3,6 +3,9 @@
 angular.module('HangoutsManagerApp')
   .controller('SettingsCtrl', function ($scope, $resource, Initialize, GPlusFetcher) {
 
+    $scope.timezone = Initialize.timezone;
+    $scope.timezoneMap = Initialize.timezoneMap;
+
     $scope.isProcessingData = false;
     $scope.google = Initialize.google;
 
@@ -60,7 +63,9 @@ angular.module('HangoutsManagerApp')
       'getBuildProgress': {method: 'GET', params: {verb: 'index-progress'}, isArray: false},
       'setProxy': {method: 'POST', params: {verb: 'proxy'}, isArray: false},
       'getProxy': {method: 'GET', params: {verb: 'proxy'}, isArray: false},
-      'enableProxy': {method: 'POST', params: {verb: 'enableProxy'}, isArray: false}
+      'enableProxy': {method: 'POST', params: {verb: 'enableProxy'}, isArray: false},
+      'getTimezone': {method: 'GET', params: {verb: 'timezone'}, isArray: false},
+      'setTimezone': {method: 'POST', params: {verb: 'timezone'}, isArray: false}
     });
 
     var fetchProgress = function() {
@@ -89,24 +94,12 @@ angular.module('HangoutsManagerApp')
       });
     };
 
-    $scope.setProxy = function(){
-      Settings.setProxy({proxy: $scope.proxyAddr}, function(){
-        console.log('proxy set!');
-        $scope.oldProxyAddr = $scope.proxyAddr;
-      });
-    };
-
-    Settings.getProxy({}, function(data){
-      $scope.useProxy = data.useProxy;
-      $scope.proxyAddr = data.proxy;
-      $scope.oldProxyAddr = $scope.proxyAddr;
-    });
-
-    $scope.$watch('useProxy', function(newValue, oldValue){
-      console.log('new:' + newValue + ' old:' + oldValue);
-      if(typeof oldValue != 'undefined') {
-        Settings.enableProxy({useProxy: newValue}, function(){
-          console.log('enabled:' + newValue);
+    $scope.$watch('timezone', function(newValue, oldValue) {
+      console.log('newValue: ' + newValue + '  oldValue: ' + oldValue);
+      if(newValue && newValue != oldValue) {
+        Initialize.timezone = newValue;
+        Settings.setTimezone({timezone: newValue}, function(data) {
+          console.log(data);
         });
       }
     });
