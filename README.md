@@ -9,6 +9,9 @@ Hangouts Manager is Hangouts offline Archive browser in offline environment. You
  2. Download dependencies:<br/>
  `$ cd HangoutsManager`<br/>
  `$ npm install`<br/>
+ `$ npm install -g bower`<br/>
+ `$ npm install -g grunt-cli`<br/>
+ `$ bower install`<br />
   Build front end:<br/>
  `$ grunt build`<br/>
   Download server dependencies:<br/>
@@ -16,8 +19,9 @@ Hangouts Manager is Hangouts offline Archive browser in offline environment. You
  `$ npm install`
  3. Enter `npm start` to start the server
  4. Open your browser, visit http://localhost:8000 , then you will see the **Setting** page.
- 5. Go to https://www.google.com/settings/takeout and download your archive. This may take a few minutes. After you have get the archive. put this into your HangoutsManger/server directory, input "./Hangouts.json"(or archive file name). click **Build** button. after all complete. refresh your page. click Home link on the navigator.
- 6. You can browse the hangouts archive now!. 
+ 5. Go to https://www.google.com/settings/takeout and download your archive. This may take a few minutes. After you have get the archive, place Hangouts.json into your HangoutsManger/server directory.
+ 6. On the Setting page, add './Hangouts.json' to the location, and hit build.
+ 7. Refresh the page, and click the home button to view your archive.
  
 Note: Search function is not available.
 
