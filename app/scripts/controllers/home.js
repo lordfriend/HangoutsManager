@@ -183,6 +183,21 @@ angular.module('HangoutsManagerApp')
           console.log(data);
           $scope.events = data;
         });
+
+        // change daily selection
+        var firstEventTimestamp = pickedIds[0].timestamp;
+        if($scope.currentDay.event_range[0].timestamp > firstEventTimestamp || $scope.currentDay.event_range[1].timestamp < firstEventTimestamp) {
+          if($scope.currentArchive.event_range[0].timestamp > firstEventTimestamp || $scope.currentArchive.event_range[1].timestamp < firstEventTimestamp) {
+
+          } else {
+            angular.forEach($scope.dailyArchive, function(daily, index) {
+              if(daily.event_range[0].timestamp <= firstEventTimestamp && daily.event_range[1].timestamp >= firstEventTimestamp) {
+                $scope.currentDay = daily;
+              }
+            });
+          }
+        }
+
       }
 
     });

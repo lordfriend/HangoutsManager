@@ -30,9 +30,9 @@
         <button class="btn" type="button">Search</button>
     </form>
     <div class="clearfix"></div>
+    <pagination total-items="currentConversation.eventCount" items-per-page="itemsPerPage" max-size="6" page="currentPage" num-pages="currentPage"></pagination>
     <ul class="chat-frame">
         <li ng-repeat="event in events" ng-class="{'send-by-owner': event.sender_id.gaia_id==owner}" chat-event="event">
         </li>
     </ul>
-    <pagination total-items="currentConversation.eventCount" items-per-page="itemsPerPage" max-size="6" page="currentPage" num-pages="currentPage"></pagination>
 </div>
